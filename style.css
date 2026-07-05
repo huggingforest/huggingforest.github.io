@@ -33,6 +33,18 @@ a {
 a:hover {
     text-decoration: underline;
 }
+.heart-video {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+
+    display: block;
+    margin: 40px auto;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+}
 a {
     display: inline-block;
     padding: 12px 30px;
