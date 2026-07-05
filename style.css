@@ -1,122 +1,40 @@
-/* ---------- GLOBAL ---------- */
+/* ---------- GENERAL ---------- */
 
-body{
-    margin:0;
-    background:#f8f7f2;
-    color:#3f4b3f;
-    font-family: Georgia, serif;
-    line-height:1.8;
-}
-
-main{
-    max-width:1100px;
-    margin:auto;
-    padding:40px;
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #3d4038;
+    background: #faf8f2;
+    line-height: 1.8;
 }
 
-section{
-    padding:100px 0;
-}
-
-h1{
-    font-size:3.4rem;
-    font-weight:normal;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-h2{
-    font-size:2.2rem;
-    font-weight:normal;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-h3{
-    font-weight:normal;
-    text-align:center;
-    color:#7c8a74;
-}
-
-p{
-    font-size:1.15rem;
-}
-
-a{
-    text-decoration:none;
-}
-.leaf-mark{
-    margin-bottom: 5px;
-}
-
-.hero h1{
-    margin-top: 0;
-}
-
-.hero .divider{
-    margin: 22px 0;
-}
-
-.hero .button{
-    margin-top: 45px;
-}
-
-.section-subtitle{
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.flower-mark{
-    display: none;
-}
 /* ---------- HEADER ---------- */
 
 .site-header{
-
-    position:sticky;
-    top:0;
-
-    background:rgba(248,247,242,.95);
-
-    backdrop-filter:blur(8px);
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    padding:22px 60px;
-
-    z-index:1000;
-
-    border-bottom:1px solid #ece8df;
-
+    padding:24px 60px;
+    background:white;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
 .logo{
-
-    font-size:1.4rem;
-
-}
-
-nav{
-
-    display:flex;
-    gap:34px;
-
+    font-size:30px;
+    font-weight:normal;
 }
 
 nav a{
-
-    color:#6f7a67;
-
-    transition:.3s;
-
+    margin-left:30px;
+    text-decoration:none;
+    color:#496247;
 }
 
 nav a:hover{
-
-    color:#a67c52;
-
+    color:#2d4d2d;
 }
 
 /* ---------- HERO ---------- */
@@ -125,25 +43,43 @@ nav a:hover{
 
     text-align:center;
 
-    padding-top:120px;
-
-    padding-bottom:140px;
+    padding:100px 20px 120px;
 
 }
 
 .leaf-mark{
 
-    font-size:2rem;
+    font-size:26px;
+
+    margin-bottom:8px;
+
+}
+
+.hero h1{
+
+    font-size:72px;
+
+    margin:0;
+
+    font-weight:normal;
+
+}
+
+.hero p{
+
+    font-size:28px;
+
+    margin:28px auto;
 
 }
 
 .divider{
 
-    color:#b4a27c;
+    margin:35px auto;
+
+    color:#8b9474;
 
     letter-spacing:6px;
-
-    margin:30px 0;
 
 }
 
@@ -151,25 +87,75 @@ nav a:hover{
 
     display:inline-block;
 
-    margin-top:30px;
+    margin-top:55px;
 
-    padding:14px 34px;
+    padding:16px 42px;
 
-    border-radius:30px;
+    border:1px solid #58724f;
 
-    background:white;
+    border-radius:40px;
 
-    color:#6d7d64;
+    color:#58724f;
 
-    border:1px solid #ddd;
+    text-decoration:none;
 
-    transition:.35s;
+    transition:.3s;
 
 }
 
 .button:hover{
 
-    background:#f1eee8;
+    background:#58724f;
+
+    color:white;
+
+}
+
+.arrow{
+
+    margin-top:25px;
+
+    font-size:26px;
+
+}
+
+/* ---------- SECTION ---------- */
+
+section{
+
+    padding:110px 10%;
+
+}
+
+section h2{
+
+    text-align:center;
+
+    font-size:52px;
+
+    font-weight:normal;
+
+    margin-bottom:12px;
+
+}
+
+section h3{
+
+    text-align:center;
+
+    font-weight:normal;
+
+    color:#666;
+
+}
+
+.section-subtitle{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+    font-style:italic;
 
 }
 
@@ -181,7 +167,7 @@ nav a:hover{
 
     grid-template-columns:1fr 1fr;
 
-    gap:70px;
+    gap:80px;
 
     align-items:center;
 
@@ -193,11 +179,9 @@ nav a:hover{
 
     width:100%;
 
-    border-radius:20px;
+    border-radius:18px;
 
     display:block;
-
-    box-shadow:0 15px 45px rgba(0,0,0,.08);
 
 }
 
@@ -209,33 +193,25 @@ nav a:hover{
 
     gap:18px;
 
-    margin-bottom:35px;
+    margin-bottom:40px;
 
 }
 
 .practice-item span{
 
-    font-size:1.8rem;
+    font-size:28px;
 
 }
 
-.practice-item h4{
-
-    margin:0;
-
-    font-weight:normal;
-
-}
-
-/* ---------- PLACEHOLDER ---------- */
+/* ---------- PLACE HOLDER ---------- */
 
 .placeholder-image{
 
-    background:#ece8df;
+    height:430px;
 
-    height:360px;
+    border-radius:25px;
 
-    border-radius:20px;
+    background:#efefe8;
 
     display:flex;
 
@@ -243,7 +219,15 @@ nav a:hover{
 
     align-items:center;
 
-    font-size:4rem;
+    font-size:70px;
+
+}
+
+/* ---------- STORY ---------- */
+
+.story-text{
+
+    font-size:22px;
 
 }
 
@@ -253,15 +237,23 @@ footer{
 
     text-align:center;
 
-    padding:70px;
+    padding:50px;
 
-    color:#8c8c8c;
+    color:#777;
+
+    font-size:15px;
 
 }
 
 /* ---------- MOBILE ---------- */
 
-@media(max-width:900px){
+@media (max-width:900px){
+
+.site-header{
+
+flex-direction:column;
+
+}
 
 .two-column{
 
@@ -269,15 +261,21 @@ grid-template-columns:1fr;
 
 }
 
-nav{
+.hero h1{
 
-display:none;
+font-size:48px;
 
 }
 
-main{
+section h2{
 
-padding:25px;
+font-size:38px;
+
+}
+
+.hero p{
+
+font-size:22px;
 
 }
 
