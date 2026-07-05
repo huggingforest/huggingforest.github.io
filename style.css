@@ -181,3 +181,50 @@ footer {
     padding: 70px 7%;
   }
 }
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #405a38;
+}
+
+@media (max-width: 850px) {
+  .site-header {
+    flex-direction: row;
+    padding: 16px 22px;
+  }
+
+  .logo {
+    font-size: 1.35rem;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: #faf8f2;
+    border-bottom: 1px solid #e8e2d6;
+    padding: 24px 0;
+    text-align: center;
+  }
+
+  nav a {
+    display: block;
+    margin: 16px 0;
+    font-size: 1.1rem;
+  }
+
+  #menu-toggle:checked ~ nav {
+    display: block;
+  }
+}
