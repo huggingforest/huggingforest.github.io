@@ -1,62 +1,261 @@
-body {
-    background-color: #f8f7f2;
-    color: #3d4a3d;
+/* ---------- GLOBAL ---------- */
+
+body{
+    margin:0;
+    background:#f8f7f2;
+    color:#3f4b3f;
     font-family: Georgia, serif;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 60px 25px;
-    text-align: center;
-    line-height: 1.8;
+    line-height:1.8;
 }
 
-h1 {
-    font-size: 3em;
-    font-weight: normal;
-    margin-bottom: 30px;
+main{
+    max-width:1100px;
+    margin:auto;
+    padding:40px;
 }
 
-h2 {
-    margin-top: 80px;
-    color: #557755;
-    font-weight: normal;
+section{
+    padding:100px 0;
 }
 
-p {
-    font-size: 1.2em;
+h1{
+    font-size:3.4rem;
+    font-weight:normal;
+    text-align:center;
+    margin-bottom:15px;
 }
 
-a {
-    color: #557755;
-    text-decoration: none;
+h2{
+    font-size:2.2rem;
+    font-weight:normal;
+    text-align:center;
+    margin-bottom:15px;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-.heart-video {
-    width: 100%;
-    max-width: 560px;
-    height: auto;
-
-    display: block;
-    margin: 40px auto;
-
-    border-radius: 18px;
-
-    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-}
-a {
-    display: inline-block;
-    padding: 12px 30px;
-    border: 1px solid #557755;
-    border-radius: 30px;
-    color: #557755;
-    text-decoration: none;
-    transition: all 0.3s ease;
+h3{
+    font-weight:normal;
+    text-align:center;
+    color:#7c8a74;
 }
 
-a:hover {
-    background-color: #557755;
-    /* refresh deploy */
-    color: white;
+p{
+    font-size:1.15rem;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* ---------- HEADER ---------- */
+
+.site-header{
+
+    position:sticky;
+    top:0;
+
+    background:rgba(248,247,242,.95);
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 60px;
+
+    z-index:1000;
+
+    border-bottom:1px solid #ece8df;
+
+}
+
+.logo{
+
+    font-size:1.4rem;
+
+}
+
+nav{
+
+    display:flex;
+    gap:34px;
+
+}
+
+nav a{
+
+    color:#6f7a67;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#a67c52;
+
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+
+    text-align:center;
+
+    padding-top:120px;
+
+    padding-bottom:140px;
+
+}
+
+.leaf-mark{
+
+    font-size:2rem;
+
+}
+
+.divider{
+
+    color:#b4a27c;
+
+    letter-spacing:6px;
+
+    margin:30px 0;
+
+}
+
+.button{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    padding:14px 34px;
+
+    border-radius:30px;
+
+    background:white;
+
+    color:#6d7d64;
+
+    border:1px solid #ddd;
+
+    transition:.35s;
+
+}
+
+.button:hover{
+
+    background:#f1eee8;
+
+}
+
+/* ---------- TWO COLUMN ---------- */
+
+.two-column{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+/* ---------- VIDEO ---------- */
+
+.heart-video{
+
+    width:100%;
+
+    border-radius:20px;
+
+    display:block;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.08);
+
+}
+
+/* ---------- PRACTICE ---------- */
+
+.practice-item{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-bottom:35px;
+
+}
+
+.practice-item span{
+
+    font-size:1.8rem;
+
+}
+
+.practice-item h4{
+
+    margin:0;
+
+    font-weight:normal;
+
+}
+
+/* ---------- PLACEHOLDER ---------- */
+
+.placeholder-image{
+
+    background:#ece8df;
+
+    height:360px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:4rem;
+
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+
+    text-align:center;
+
+    padding:70px;
+
+    color:#8c8c8c;
+
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:900px){
+
+.two-column{
+
+grid-template-columns:1fr;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+main{
+
+padding:25px;
+
+}
+
 }
