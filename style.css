@@ -45,7 +45,30 @@ p{
 a{
     text-decoration:none;
 }
+.leaf-mark{
+    margin-bottom: 5px;
+}
 
+.hero h1{
+    margin-top: 0;
+}
+
+.hero .divider{
+    margin: 22px 0;
+}
+
+.hero .button{
+    margin-top: 45px;
+}
+
+.section-subtitle{
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.flower-mark{
+    display: none;
+}
 /* ---------- HEADER ---------- */
 
 .site-header{
