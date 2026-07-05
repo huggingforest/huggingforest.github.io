@@ -1,0 +1,35 @@
+body {
+    background-color: #f8f7f2;
+    color: #3d4a3d;
+    font-family: Georgia, serif;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 25px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-top: 80px;
+    color: #557755;
+    font-weight: normal;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+a {
+    color: #557755;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
