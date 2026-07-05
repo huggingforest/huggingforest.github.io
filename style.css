@@ -33,3 +33,17 @@ a {
 a:hover {
     text-decoration: underline;
 }
+a {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px solid #557755;
+    border-radius: 30px;
+    color: #557755;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background-color: #557755;
+    color: white;
+}
