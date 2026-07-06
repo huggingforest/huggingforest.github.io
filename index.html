@@ -1,157 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HuggingForest</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HuggingForest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F0;
+    --ink:#33402F;
+    --ink-soft:#6B7563;
+    --line: rgba(51,64,47,0.12);
+    --seed:#8CA06B;
+    --apple1:#7C9B5C;
+    --apple2:#C97A3D;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Work Sans','Gowun Dodum',sans-serif; font-weight:300;
+    line-height:1.7;
+  }
+  body.kr :lang(en){display:none;}
+  body.en :lang(kr){display:none;}
+  h1,h2,.display{font-family:'Fraunces','Gowun Batang',serif; font-weight:500;}
+  body.kr h1,body.kr h2,body.kr .display{font-family:'Gowun Batang','Fraunces',serif; font-weight:700;}
+  section{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:6vh 2rem; text-align:center; position:relative;}
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.3rem 1.6rem; mix-blend-mode:normal;
+  }
+  .brand{font-family:'Fraunces','Gowun Batang',serif; font-size:1rem; color:var(--ink-soft); text-decoration:none; letter-spacing:0.02em; opacity:0.7;}
+  .lang-toggle{display:flex; gap:0.4rem; font-size:0.75rem;}
+  .lang-toggle button{border:none; background:none; color:var(--ink-soft); cursor:pointer; font-family:inherit; opacity:0.5; padding:0.2rem 0.4rem;}
+  .lang-toggle button.active{opacity:1; text-decoration:underline;}
+
+  /* ---- HERO / Seed Hall ---- */
+  #hero{cursor:pointer;}
+  .seed-wrap{position:relative; width:120px; height:150px; margin:0 auto 3rem;}
+  .seed-icon{width:100%; height:100%; animation:breathe 4s ease-in-out infinite;}
+  @keyframes breathe{
+    0%,100%{transform:scale(1); opacity:0.9;}
+    50%{transform:scale(1.06); opacity:1;}
+  }
+  .hero-text{opacity:0; transition:opacity 1.4s ease; max-width:420px;}
+  .hero-text.show{opacity:1;}
+  .hero-text p.line1{font-family:'Fraunces','Gowun Batang',serif; font-size:1.5rem; margin:0 0 2.2rem; color:var(--ink);}
+  body.kr .hero-text p.line1{font-family:'Gowun Batang',serif;}
+  .enter-link{
+    display:inline-block; opacity:0; transition:opacity 1.2s ease 0.6s;
+    font-size:0.85rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:0.3rem;
+  }
+  .enter-link.show{opacity:1;}
+  .hero-hint{position:absolute; bottom:8vh; font-size:0.75rem; color:var(--ink-soft); opacity:0.5; letter-spacing:0.08em;}
+
+  /* ---- Heart Blossom Way ---- */
+  .hbw-words{display:flex; gap:3.5rem; flex-wrap:wrap; justify-content:center; margin-bottom:2rem;}
+  .hbw-word{font-family:'Fraunces','Gowun Batang',serif; font-size:1.6rem; color:var(--ink); position:relative; cursor:default;}
+  body.kr .hbw-word{font-family:'Gowun Batang',serif;}
+  .hbw-sub{display:block; font-family:'Work Sans','Gowun Dodum',sans-serif; font-weight:300; font-size:0.85rem; color:var(--ink-soft); margin-top:0.6rem; max-width:180px;}
+  .section-eyebrow{font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:2.5rem; opacity:0.7;}
+
+  /* ---- Growing Together ---- */
+  .apples{display:flex; gap:2.2rem; justify-content:center; margin-bottom:1.5rem;}
+  .apples button{
+    background:none; border:none; font-size:2.6rem; cursor:pointer; line-height:1;
+    filter:grayscale(0.1); transition:transform .3s ease;
+  }
+  .apples button:hover{transform:scale(1.12);}
+  .gt-text{max-width:460px; font-size:1rem; color:var(--ink); overflow:hidden; max-height:0; opacity:0; transition:max-height 0.8s ease, opacity 0.8s ease;}
+  .gt-text.open{max-height:400px; opacity:1; margin-top:1.5rem;}
+  .gt-text p{margin:0.6rem 0;}
+  .gt-text .promise{font-family:'Fraunces','Gowun Batang',serif; font-size:1.1rem;}
+
+  /* ---- Forest Journal ---- */
+  .journal-flower{font-size:3.2rem; margin-bottom:1.6rem; transition:transform .4s ease;}
+  .journal-flower.spin{animation:spin .5s ease;}
+  @keyframes spin{ from{transform:rotate(0deg) scale(0.7); opacity:0.4;} to{transform:rotate(360deg) scale(1); opacity:1;} }
+  .journal-name{font-family:'Fraunces','Gowun Batang',serif; font-size:1.2rem; margin-bottom:0.6rem;}
+  .journal-line{color:var(--ink-soft); font-style:italic; font-size:0.98rem; max-width:380px; margin-bottom:2rem; min-height:2.4em;}
+  .journal-nav{display:flex; gap:2rem; align-items:center;}
+  .journal-nav button{background:none; border:1px solid var(--line); border-radius:999px; width:38px; height:38px; cursor:pointer; color:var(--ink-soft); font-size:1rem;}
+  .journal-dots{display:flex; gap:0.4rem;}
+  .journal-dots span{width:5px; height:5px; border-radius:50%; background:var(--line); display:inline-block;}
+  .journal-dots span.active{background:var(--ink-soft);}
+
+  /* ---- About ---- */
+  #about p{max-width:440px; font-size:0.98rem; color:var(--ink);}
+  #about .companions{display:flex; gap:2.5rem; margin:2.2rem 0; flex-wrap:wrap; justify-content:center;}
+  #about .comp{font-size:0.85rem; color:var(--ink-soft);}
+  #about .comp b{display:block; font-family:'Fraunces','Gowun Batang',serif; color:var(--ink); font-size:1.05rem; margin-bottom:0.2rem;}
+
+  /* ---- Footer ---- */
+  footer{padding:5rem 2rem 6rem; text-align:center; color:var(--ink-soft); font-size:0.85rem;}
+  footer p{margin:0.3rem 0;}
+  footer .sig{font-family:'Fraunces','Gowun Batang',serif; font-style:italic; font-size:1rem; color:var(--ink); margin-bottom:0.6rem;}
+
+  a.walk{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line); font-size:0.85rem; letter-spacing:0.05em;}
+
+  @media (max-width:640px){
+    .hbw-words{gap:2rem;}
+    .apples{gap:1.4rem;}
+  }
+</style>
 </head>
+<body class="en">
 
-<body>
+<div class="topbar">
+  <a href="#hero" class="brand">HuggingForest</a>
+  <div class="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-kr" onclick="setLang('kr')">한글</button>
+  </div>
+</div>
 
-  <header class="site-header">
-  <div class="logo">🌿 HuggingForest</div>
+<!-- SEED HALL -->
+<section id="hero" onclick="revealHero()">
+  <div class="seed-wrap">
+    <svg class="seed-icon" viewBox="0 0 46 60" fill="none">
+      <path d="M23 58V26" stroke="#33402F" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M23 26C23 14 16 8 6 8C6 18 11 25 23 26Z" fill="#9CB380" stroke="#33402F" stroke-width="1"/>
+      <path d="M23 22C23 10 30 4 40 4C40 14 35 21 23 22Z" fill="#C7D4B4" stroke="#33402F" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="hero-text" id="hero-text">
+    <p class="line1"><span lang="en">Everything begins with a seed.</span><span lang="kr">모든 것은 씨앗에서 시작됩니다.</span></p>
+  </div>
+  <a href="#hbw" class="enter-link" id="enter-link"><span lang="en">Enter the Forest</span><span lang="kr">숲으로 들어가기</span></a>
+  <p class="hero-hint" id="hero-hint"><span lang="en">touch the seed</span><span lang="kr">씨앗을 눌러보세요</span></p>
+</section>
 
-  <input type="checkbox" id="menu-toggle">
-  <label for="menu-toggle" class="menu-icon">☰</label>
+<!-- HEART BLOSSOM WAY -->
+<section id="hbw">
+  <p class="section-eyebrow"><span lang="en">Heart Blossom Way</span><span lang="kr">하트 블로썸 웨이</span></p>
+  <div class="hbw-words">
+    <div class="hbw-word">Awaken<span class="hbw-sub" lang="en">Notice the love already here.</span><span class="hbw-sub" lang="kr">이미 있는 사랑을 알아봅니다.</span></div>
+    <div class="hbw-word">Abide<span class="hbw-sub" lang="en">Rest inside it.</span><span class="hbw-sub" lang="kr">그 안에 머뭅니다.</span></div>
+    <div class="hbw-word">Blossom<span class="hbw-sub" lang="en">Let it bloom through you.</span><span class="hbw-sub" lang="kr">삶으로 꽃피웁니다.</span></div>
+  </div>
+</section>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#heart">Heart Blossom</a>
-    <a href="#growing">Growing Together</a>
-    <a href="#journal">Forest Journal</a>
-    <a href="#about">About</a>
-  </nav>
-</header>
+<!-- GROWING TOGETHER -->
+<section id="growing">
+  <p class="section-eyebrow"><span lang="en">Growing Together</span><span lang="kr">그로잉 투게더</span></p>
+  <div class="apples">
+    <button onclick="toggleGT()">🍏</button>
+    <button onclick="toggleGT()">🍊</button>
+  </div>
+  <div class="gt-text" id="gt-text">
+    <p class="promise"><span lang="en">When my son came into my life, I made two quiet promises.</span><span lang="kr">아들이 내게 오면서, 나는 두 개의 조용한 결심을 했습니다.</span></p>
+    <p><span lang="en">To learn parenting from nature.</span><span lang="kr">자연으로부터 양육을 배우겠다는 것.</span></p>
+    <p><span lang="en">To become a parent who keeps growing alongside my child.</span><span lang="kr">아이와 함께 계속 자라나는 부모가 되겠다는 것.</span></p>
+    <p><span lang="en">I didn't know then these promises would become a lifelong pilgrimage.</span><span lang="kr">그때는 몰랐습니다, 이 결심이 평생의 순례가 될 줄은.</span></p>
+  </div>
+</section>
 
-  <main>
+<!-- FOREST JOURNAL -->
+<section id="journal">
+  <p class="section-eyebrow"><span lang="en">Forest Journal</span><span lang="kr">숲의 일기</span></p>
+  <div class="journal-flower" id="j-flower">🌼</div>
+  <p class="journal-name" id="j-name"></p>
+  <p class="journal-line" id="j-line"></p>
+  <div class="journal-nav">
+    <button onclick="jNav(-1)">←</button>
+    <div class="journal-dots" id="j-dots"></div>
+    <button onclick="jNav(1)">→</button>
+  </div>
+</section>
 
-    <section class="hero">
-      <div class="hero-symbol">🌱</div>
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow"><span lang="en">About</span><span lang="kr">소개</span></p>
+  <h2 style="font-size:1.4rem; margin:0 0 1.2rem;"><span lang="en">Why this forest exists</span><span lang="kr">이 숲이 존재하는 이유</span></h2>
+  <p><span lang="en">We are not here to teach nature. We are here to create moments where people rediscover the love already growing around them.</span><span lang="kr">우리는 자연을 가르치기 위해 존재하지 않습니다. 이미 우리 곁에서 자라고 있는 사랑을 다시 알아보도록 돕기 위해 존재합니다.</span></p>
+  <div class="companions">
+    <div class="comp"><b>Nana Lily</b><span lang="en">A felt grandmother who holds every child</span><span lang="kr">모든 아이를 안아주는 느낌인형 할머니</span></div>
+    <div class="comp"><b>Baba Oak</b><span lang="en">An old tree who forgets no season</span><span lang="kr">어느 계절도 잊지 않는 오래된 나무</span></div>
+    <div class="comp"><b>Buttercup</b><span lang="en">A flower that shows the way, like a lighthouse</span><span lang="kr">등대처럼 길을 보여주는 작은 꽃</span></div>
+  </div>
+  <a class="walk" href="https://huggingforest.etsy.com" target="_blank" rel="noopener"><span lang="en">Visit the shop →</span><span lang="kr">상점 방문하기 →</span></a>
+</section>
 
-      <h1>HuggingForest</h1>
+<footer>
+  <p class="sig"><span lang="en">Every forest begins with a seed.</span><span lang="kr">모든 숲은 씨앗에서 시작됩니다.</span></p>
+  <p><span lang="en">Thank you for growing with us.</span><span lang="kr">함께 자라주셔서 고맙습니다.</span></p>
+</footer>
 
-      <p>Everything begins with a seed.</p>
+<script>
+function setLang(lang){
+  document.body.className = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-kr').classList.toggle('active', lang==='kr');
+}
 
-      <div class="divider">— ♥ —</div>
+function revealHero(){
+  document.getElementById('hero-text').classList.add('show');
+  document.getElementById('enter-link').classList.add('show');
+  document.getElementById('hero-hint').style.display='none';
+}
 
-      <p>
-        Every seed carries<br>
-        the essence of nature's love.
-      </p>
+function toggleGT(){
+  document.getElementById('gt-text').classList.toggle('open');
+}
 
-      <a class="button" href="#heart">Enter the Forest</a>
-      <div class="arrow">↓</div>
-    </section>
-
-    <section id="heart" class="heart-section">
-      <h2>The Heart Blossom Way</h2>
-      <h3>Awaken · Abide · Blossom</h3>
-      <p class="section-subtitle"><em>A simple Heart Blossom practice.</em></p>
-
-      <div class="two-column">
-        <video class="heart-video" autoplay muted loop playsinline preload="auto">
-          <source src="videos/Hero.mp4" type="video/mp4">
-        </video>
-
-        <div class="practice-list">
-          <div class="practice-item">
-            <span>🌸</span>
-            <div>
-              <h4>Awaken to love.</h4>
-              <p>Open your eyes to the love already around you.</p>
-            </div>
-          </div>
-
-          <div class="practice-item">
-            <span>🌸</span>
-            <div>
-              <h4>Abide in love.</h4>
-              <p>Rest your heart in that love.</p>
-            </div>
-          </div>
-
-          <div class="practice-item">
-            <span>🌸</span>
-            <div>
-              <h4>Blossom through love.</h4>
-              <p>Let that love bloom through your life.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="growing" class="growing-section">
-      <h2>Growing Together</h2>
-
-      <div class="two-column">
-        <div class="story-text">
-          <p>
-            When my son came into my life,<br>
-            I made two quiet promises.
-          </p>
-
-          <p>To learn parenting from nature.</p>
-
-          <p>To grow together with my child.</p>
-
-          <p>
-            I didn't know then that these promises<br>
-            would become a lifelong pilgrimage.
-          </p>
-
-          <p>
-            Nature slowly opened my eyes<br>
-            to a love that had always been there.
-          </p>
-
-          <p>
-            And from that journey,<br>
-            HuggingForest quietly began to grow.
-          </p>
-
-          <a class="button" href="#about">🌿 Come Walk with Me</a>
-        </div>
-
-        <div class="placeholder-image">
-          🌱
-        </div>
-      </div>
-    </section>
-
-    <section id="journal" class="journal-section">
-      <div class="two-column">
-        <div>
-          <h2>Forest Journal</h2>
-
-          <p class="journal-lines">
-            One flower.<br>
-            One story.<br>
-            One song.<br>
-            One season at a time.
-          </p>
-
-          <p>
-            Stories from the forest,<br>
-            season by season.
-          </p>
-
-          <a class="button" href="#">🌿 Visit Forest Journal</a>
-        </div>
-
-        <div class="placeholder-image">
-          🌼
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer id="about">
-    <p>May you always remember the love already growing around you.</p>
-    <p>© 2025 HuggingForest. All rights reserved.</p>
-  </footer>
-
+const journal = [
+  {icon:'🍊', en:['Tangerine Sprout','"You have your own time."'], kr:['귤 새싹','"너만의 때가 있단다."']},
+  {icon:'🌼', en:['Buttercup','"May your heart dance all the way."'], kr:['버터컵','"네 마음이 끝까지 춤추기를."']},
+  {icon:'🌺', en:['Daylily','"Bloom brightly, even for just one day."'], kr:['데이릴리','"단 하루라도, 눈부시게 피어나렴."']},
+  {icon:'🦋', en:['Milkweed & Butterfly','"Some journeys need a resting leaf."'], kr:['밀크위드와 나비','"어떤 여정에는 쉬어갈 잎이 필요해."']},
+  {icon:'🌱', en:['Dandelion','"Let go, and you will still be seen."'], kr:['민들레','"놓아도, 여전히 보일 거야."']},
+];
+let jIndex = 0;
+function renderJournal(){
+  const item = journal[jIndex];
+  const flowerEl = document.getElementById('j-flower');
+  flowerEl.textContent = item.icon;
+  flowerEl.classList.remove('spin'); void flowerEl.offsetWidth; flowerEl.classList.add('spin');
+  document.getElementById('j-name').innerHTML = `<span lang="en">${item.en[0]}</span><span lang="kr">${item.kr[0]}</span>`;
+  document.getElementById('j-line').innerHTML = `<span lang="en">${item.en[1]}</span><span lang="kr">${item.kr[1]}</span>`;
+  const dots = document.getElementById('j-dots');
+  dots.innerHTML = journal.map((_,i)=>`<span class="${i===jIndex?'active':''}"></span>`).join('');
+}
+function jNav(dir){
+  jIndex = (jIndex + dir + journal.length) % journal.length;
+  renderJournal();
+}
+renderJournal();
+</script>
 </body>
 </html>
